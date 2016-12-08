@@ -1,5 +1,6 @@
 ---
 title: Hexo部署博客及采用git branch管理源文件
+tags: [tech]
 ---
 
 ### 前言
