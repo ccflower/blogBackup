@@ -20,6 +20,8 @@ tags: [tech]
 又按照之前的步骤配置了一遍，等hexo deploy顺利执行完，刚准备舒口气，
 刷新网页一看所有之前的内容都没有了（虽然本来就没啥）。
 
+<!-- more -->
+
 
 如果不想开两个项目来管理一个博客，只有借助分支来管理源文件和部署的静态文件了。搜到了CrazyMilk的博客（http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more）。
 
