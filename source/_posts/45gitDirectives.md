@@ -1,5 +1,5 @@
 ---
-title: 45. 常用Git指令
+title: 常用Git指令
 tags: [tech]
 ---
 

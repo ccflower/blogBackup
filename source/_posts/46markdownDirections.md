@@ -1,5 +1,5 @@
 ---
-title: 46. 常用MD编辑指令
+title: 常用MarkDown编辑指令
 tags: [tech]
 ---
 

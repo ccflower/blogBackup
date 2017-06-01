@@ -1,66 +1,54 @@
 ---
-title: Hexo部署博客及采用git branch管理源文件
+title: Hexo搭建个人Github Blog
 tags: [tech]
 ---
 
 ### 前言
 
   好久没写过认真构思的文章， 想要记录一下遇到的问题居然都有点无从入手。第一篇，有点乱。
+  
+  本文主要介绍初次利用HEXO搭建个人github博客的流程，以及在github备份博客后的二次快速搭建。
 
 ### 背景
 
 开始玩gitblog的时候参看网上众多教程部署好了自己的博客。大概是十月初的时候。
-主要参照物是涛哥的博客啦（http://todd2010.github.io/2016/05/18/005-Hexo-GitHub/#more）。
+主要参照物是[涛哥的博客](http://todd2010.github.io/2016/05/18/005-Hexo-GitHub/#more)。涛哥的博客写的简明清晰，欢迎大家关注。
 
-
-后来适逢我厂大规模换电脑。而那时候只觉得我的博客已经部署到Git上了，
-愉快地删除了所有的源文件。
-
-然后领到新电脑，等再有时间来重新整理Hexo的时候，
-又按照之前的步骤配置了一遍，等hexo deploy顺利执行完，刚准备舒口气，
-刷新网页一看所有之前的内容都没有了（虽然本来就没啥）。
 
 <!-- more -->
 
+### 一、首次利用HEXO搭建blog
 
-如果不想开两个项目来管理一个博客，只有借助分支来管理源文件和部署的静态文件了。搜到了CrazyMilk的博客（http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more）。
-
-
-这篇文章对我很有启发。但是按照博主的步骤没有配置成功。原因在于每当执行hexo init后，clone的仓库的git的信息就丢失了。即使重新git init,并与远程仓库建立联系也遇到了很多问题。
-
-
-所以最后只好反其道行之，在Hexo部署都设置好之后，重新初始化git仓库。建立远程连接。设置默认分支Hexo。在Hexo分支上提交src文件。在master
-分支上部署静态文件。具体步骤如下。
-
-#### 1. 安装Hexo
-Hexo安装之前需要电脑上已经安装Node。
+##### 1. 安装Hexo
+Hexo安装之前需要电脑上已经安装Node。博主当前使用node版本为v6.10.3, 配套npm版本为3.10.10。
 使用npm安装Hexo。
 
     $ npm install -g hexo-cli
-
-#### 2. Hexo建站
+##### 2. Hexo建站
 
     $ hexo init
-
-注意， hexo init会初始化当前文件夹为hexo建站目录。可以用
+注意， hexo init会初始化当前文件夹为hexo建站目录。可以用如下指令生成一个新的名为blogName的文件夹作为blog目录。
 
     $ hexo init blogName
-生成一个新的名为blogName的文件夹作为blog目录。
-
-
-下载依赖。
-
-
+#### 3.下载依赖。
     $ npm install
-生成网站文件，启动服务。
+#### 4. 生成网站文件，启动服务。
 
     $ hexo generate
     $ hexo server
 至此，本地可以通过http://localhost:4000/访问自动生成的博客。
 
-#### 3. 部署到github
+#### 5. 部署到github
 
 修改_config.yml文件。
+###### 1)  url: http://yoursite.com 改成 url: http://ABC123.github.io
+###### 2) 把最下面的部署内容修改成如下代码并保存退出。
+    deploy:
+        type: git
+        repository: https://github.com/Todd2010/Todd2010.github.io.git  //此处改成您的GitHub仓库地址
+        branch: master
+
+
 安装部署插件。
 
     $ npm install hexo-deployer-git --save
@@ -68,54 +56,55 @@ Hexo安装之前需要电脑上已经安装Node。
     $ hexo generate
     $ hexo deploy 
 
-至此，可通过yourProjectName.github.io访问博客。
+至此，可通过yourProjectName.github.io访问博客。Hexo搭建个人博客已经完成。
 
-#### 4. 新建Hexo分支，存储源文件
+### 二、备份博客到github
+Hexo部署在ccflower.github.io项目中，是已经编译过的项目文件。而博客的源文件，包括文档，图片，配置，甚至主题，需要自己新建项目备份。博主折腾过在同一个项目中通过不同的分支来管理源文件和部署文件，后来觉得有点混乱，目前也采取额外新建一个项目[blogBackup](https://github.com/ccflower/blogBackup)存放博客源文件。
 
-初始化当前项目为一个git仓库。
+### 三、主题配置
 
-    $ git init
+目前博主采用[litten](litten.me)开发的[yilia](https://github.com/litten/hexo-theme-yilia)主题。具体主题如何配置改动后面再陆续补充。
 
-与远程仓库建立联系
+### 四、配置个人域名
 
-    $ git remote add origin https://github.com/ccflower/ccflower.github.io.git
+对大部分人来说，ccflower.github.io这样一个域名指向自己的博客地址已经足够用了。博主因为不了解域名的配置，花4RMB买了一个[ccflower.space](ccflower.space)的域名指向自己github的博客。时间久了具体步骤已经有点忘记了。下次重新折腾记得来补充。
+### 五、利用blogBackup备份进行快速二次搭建
 
-获取远程仓库的最新状态
+如果换电脑，或者不小心搞残了自己本地的博客配置，这个步骤将十分有用。
 
-    $ git pull
+#### 1. 远程克隆项目
 
-创建新分支Hexo并切换
+    git clone https://github.com/ccflower/blogBackup.git
+克隆完成后，将.git文件拷贝出来备份。后续hexo init步骤会删除这个文件，还不理解原因。
 
-    $ git checkout -b Hexo
+#### 2. 进入项目，安装hexo
 
-将新分支推送到远程。
+    npm install hexo --save
+#### 3. 项目hexo初始化,安装依赖
 
-    $ git push origin Hexo
+    hexo init
+    npm install
+#### 4.启动hexo server，本地测试
 
-在gitHub主页选择Hexo为默认分支。因为源文件的提交需要手动管理。master分之下只需要通过Hexo部署静态文件即可。
+    hexo s
+#### 5.修改主题
+拷贝_config.yml和themes文件夹，本地测试主题适用。
 
-在Hexo分支下执行一下指令，将源文件提交到Hexo分支。
+#### 6.将.git文件夹复制回blogBackup
+#### 7.安装Hexo部署插件
 
-    $ git pull
-    $ git status
-    $ git add ******
-    $ git commit -m "Here is comments."
-    $ git push origin Hexo
+    npm install hexo-deployer-git --save
+#### 8.重新部署blog
 
-需要重新部署博客时，只需要在Hexo分支下执行
+    hexo clean  
+    hexo g
+    hexo d
+#### 9. 将改动提交到blogBackup
+    git status
+    git add 
+    git commit -m "..."
+    git push
 
-    $ hexo clean
-    $ hexo g
-    $ hexo d
-通过以上步骤，即可以利用master分支管理部署博客的静态资源。利用Hexo分支来更新源文件啦。其实只有Hexo分支需要手动管理。msater分支只是记录了Hexo的操作而已。So easy！
-不过身边有个大神不喜欢非要部署，自己写了一个工具做静态发布。有时间再研究一下。
-
-好啦，下次换电脑的时候，只需要clone下自己github.io的项目来，
-在Hexo分支上就可以拿到所有的源文件啦。
-然后安装Hexo， 安装依赖，安装部署插件，就可以继续发布新博客啦！
-妈妈再也不用担心你的博客都被一键清理咯~~~~~~！
-
-
-### 后续
-后来觉得， 既然这是两个永远不需要merge的分支。干脆还是分开两个项目管理好了。所以下午打算重新来一遍啦~~~！
-
+### 六、小结
+使用Hexo搭建blog已经有一年多的时间，反复折腾过不少次。
+踏过的坑，都是未来的经验。耐心总结梳理，对自己总会有所帮助吧。

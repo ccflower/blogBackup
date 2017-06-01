@@ -1,6 +1,6 @@
 ---
-title: AMD模式以及define函数的理解
-tags: [tech]
+title: 有关一个记录者
+tags: [daily]
 ---
 
 
@@ -14,4 +14,3 @@ tags: [tech]
 
 
 <!-- more -->
-
