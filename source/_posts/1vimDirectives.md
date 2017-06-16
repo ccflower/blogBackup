@@ -12,7 +12,7 @@ Vi运行于Unix。Vim可以运行在unix，windows，Mac等多个平台。
 目前Mac 10.12.3自带的Vim版本为7.4。如果想继续升级，参考 https://www.zhihu.com/question/34113076
 
 Vi的三个模式及其转换
-
+![alt text](/assets/blogImg/1/1.jpg "Vi的三个模式及其转换")
 
 <!-- more -->
 

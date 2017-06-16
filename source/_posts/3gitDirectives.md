@@ -65,7 +65,7 @@ gitlab可以创建免费的私人账户。同时可以设置不同的分组，�
     $ git reset HEAD [fileName]
 
 理解工作区，暂存区和本地仓库的关系
-![alt text](/assets/blogImg/45/1.jpg "理解工作区，暂存区和本地仓库的关系")
+![alt text](/assets/blogImg/3/1.jpg "理解工作区，暂存区和本地仓库的关系")
 
 ### 删除文件
     $ git rm [fileName]
@@ -96,7 +96,7 @@ gitlab可以创建免费的私人账户。同时可以设置不同的分组，�
 
 理解fork项目和源项目
 
-![alt text](/assets/blogImg/45/2.jpg "理解fork项目和源项目")
+![alt text](/assets/blogImg/3/2.jpg "理解fork项目和源项目")
 
 `.gitignore`文件可以设置git忽略的文件。
 
